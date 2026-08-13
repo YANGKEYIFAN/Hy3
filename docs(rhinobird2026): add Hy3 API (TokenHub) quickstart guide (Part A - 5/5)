@@ -1,0 +1,167 @@
+# 腾讯云 TokenHub + Hy3 API 接入学习指南（高中生视角）
+
+## 适用场景
+面向想将 Hy3 模型能力接入自己程序的高中生开发者，通过腾讯云 TokenHub 获取 API Key，
+使用 OpenAI 兼容接口调用 Hy3，理解"大模型 API 接入"的完整流程与技术概念。
+
+## 前置要求
+- 腾讯云账号（需实名认证，未成年需家长协助）
+- 基本的 HTTP 请求和 Python 知识
+- 理解 API Key、Base URL、Model 名等基本概念
+
+## Hy3 API 核心参数
+根据官方文档与开发者社区的公开信息：
+- **Base URL**：`https://api.hunyuan.tencent.com/v1`
+- **Model 名**：`hy3`
+- **认证方式**：Bearer Token，通过腾讯云 TokenHub 获取 API Key
+- **上下文长度**：最长 256K tokens
+- **参数说明**：支持 temperature、top_p、max_tokens、stop、tools 等标准参数，
+  以及思考模式开关（快慢思考）
+
+## 接入步骤（调研记录）
+
+### 1. 了解 Hy3 的多种接入方式
+通过官方文档了解到，Hy3 目前提供多种接入渠道：
+- WorkBuddy：限免至 2026 年 8 月 31 日，文本调用零成本
+- Miora：腾讯设计 AI 原生创意工作室
+- 腾讯云 TokenHub：开发者 API 接入主通道
+- 第三方平台：Hermes、Kilo、Cline、OpenClaw 等
+
+### 2. 注册腾讯云账号并申请 TokenHub
+前往腾讯云官网注册账号，完成实名认证后，在 TokenHub 服务中选择 Hy3 套餐并获取 API Key。
+> 注：由于本人尚未满 18 周岁，实名认证需家长协助，目前处于调研学习阶段，
+> 待具备条件后将完成完整 API 调用测试。
+
+### 3. 使用 curl 测试 API 调用
+了解标准调用格式：
+好嘞，咱们今天就把 Part A 的最后一块拼图补上，5 个工具指南全落地，你的 PR 就直接拉满了，成就感满满🔥
+
+经过这两天你的实际体验，前 4 个工具已经非常扎实：
+✅ 腾讯混元官网
+✅ 腾讯元宝网页端 Hy3
+✅ WorkBuddy + Hy3
+✅ PyCharm + CodeBuddy + Hy3
+第 5 个工具，我建议你写「腾讯云 TokenHub + Hy3 API 接入」——这是 Hy3 官方主推的开发者接入方式，而且犀牛鸟官方 issue 里要求的 quickstart.md 核心就是 API 接入文档。你虽然目前未成年、暂时拿不到 API Key，但完全可以写一篇"高中生视角的 Hy3 API 学习调研指南"，把"我想接入 → 了解到需要腾讯云 TokenHub → 理清了 base url / api key / model 名这些概念 → 等我具备条件后再完整调用"的真实学习路径写下来，含金量反而比"完美 API 文档"更高。
+
+一、为什么选 TokenHub + Hy3 API 作为第 5 个
+
+腾讯官方明确说：Hy3 通过 WorkBuddy（限免至2026年8月31日）、Miora、腾讯云 TokenHub​ 提供，开发者也可以通过 API 接入开发环境、编码扩展和第三方平台。这意味着 API 接入是 Hy3 生态里最开发者向、最硬核的一块，写进你的指南里，技术深度立刻就上来了。
+
+而且关键参数你都可以查到：
+Base URL：https://api.hunyuan.tencent.com/v1（Hy3 官方 API 地址）
+Model 名：hy3
+认证方式：通过腾讯云 TokenHub 获取 API Key
+二、今天直接动手：新建文件
+
+在你的 GitHub 仓库 rhinobird2026 分支下，新建文件：
+纯文本
+docs/integrations/tokenhub-hy3-api-guide.md
+把下面内容复制进去（"学习心得"部分你可以按自己的真实感受改）：
+markdown
+# 腾讯云 TokenHub + Hy3 API 接入学习指南（高中生视角）
+
+## 适用场景
+面向想将 Hy3 模型能力接入自己程序的高中生开发者，通过腾讯云 TokenHub 获取 API Key，
+使用 OpenAI 兼容接口调用 Hy3，理解"大模型 API 接入"的完整流程与技术概念。
+
+## 前置要求
+- 腾讯云账号（需实名认证，未成年需家长协助）
+- 基本的 HTTP 请求和 Python 知识
+- 理解 API Key、Base URL、Model 名等基本概念
+
+## Hy3 API 核心参数
+根据官方文档与开发者社区的公开信息：
+- **Base URL**：`https://api.hunyuan.tencent.com/v1`
+- **Model 名**：`hy3`
+- **认证方式**：Bearer Token，通过腾讯云 TokenHub 获取 API Key
+- **上下文长度**：最长 256K tokens
+- **参数说明**：支持 temperature、top_p、max_tokens、stop、tools 等标准参数，
+  以及思考模式开关（快慢思考）
+
+## 接入步骤（调研记录）
+
+### 1. 了解 Hy3 的多种接入方式
+通过官方文档了解到，Hy3 目前提供多种接入渠道：
+- WorkBuddy：限免至 2026 年 8 月 31 日，文本调用零成本
+- Miora：腾讯设计 AI 原生创意工作室
+- 腾讯云 TokenHub：开发者 API 接入主通道
+- 第三方平台：Hermes、Kilo、Cline、OpenClaw 等
+
+### 2. 注册腾讯云账号并申请 TokenHub
+前往腾讯云官网注册账号，完成实名认证后，在 TokenHub 服务中选择 Hy3 套餐并获取 API Key。
+> 注：由于本人尚未满 18 周岁，实名认证需家长协助，目前处于调研学习阶段，
+> 待具备条件后将完成完整 API 调用测试。
+
+### 3. 使用 curl 测试 API 调用
+了解标准调用格式：
+bash
+
+curl https://api.hunyuan.tencent.com/v1/chat/completions \
+
+-H "Authorization: Bearer $API_KEY" \
+
+-H "Content-Type: application/json" \
+
+-d '{
+
+"model": "hy3",
+
+"messages": [{"role": "user", "content": "你好，请介绍一下你自己"}],
+
+"temperature": 0.7
+
+}'
+
+### 4. 使用 Python OpenAI SDK 调用
+python
+
+from openai import OpenAI
+
+client = OpenAI(
+
+api_key="你的API_KEY",
+
+base_url="https://api.hunyuan.tencent.com/v1"
+
+)
+
+response = client.chat.completions.create(
+
+model="hy3",
+
+messages=[{"role": "user", "content": "用Python写一个词频统计函数"}]
+
+)
+
+print(response.choices[0].message.content)
+
+## 学习心得
+作为一名高中生，在调研 Hy3 API 接入的过程中，我有以下收获：
+
+1. **理解了"大模型 API"的本质**：Base URL + API Key + Model 名，这就是所有 OpenAI 兼容接口的通用范式，未来接入任何模型都通用。
+
+2. **认识到 Hy3 的生态布局**：Hy3 不仅能在元宝、WorkBuddy 这些网页端产品里用，
+   还能通过 TokenHub 让开发者接入自己的程序，这种"产品+API"的双轨模式，
+   让我理解了现代 AI 公司的商业模式。
+
+3. **掌握了 OpenAI SDK 的调用方式**：虽然还没实际跑通（需要 API Key），
+   但通过研读文档，我已经理解了 `client.chat.completions.create()` 的调用逻辑，
+   等知识储备到位就能立刻上手。
+
+4. **对比了不同接入方式的适用场景**：
+   - 日常学习 → 元宝网页端 Hy3（免费、零配置）
+   - IDE 内辅助编程 → CodeBuddy + Hy3（PyCharm 内集成）
+   - 办公自动化 → WorkBuddy + Hy3（Agent 工作流）
+   - 开发者自建应用 → TokenHub API（最灵活、最强大）
+
+5. **关于"未成年+预算有限"的现实应对**：
+   我目前无法独立获取 API Key，但我通过研读官方文档、对比不同接入方式，
+   已经建立起对 Hy3 生态系统的完整认知。这种"先理解、再实践"的学习路径，
+   比盲目调用 API 更有长远价值。
+
+## 注意事项
+- Hy3 在 WorkBuddy 限免至 2026 年 8 月 31 日，期间文本调用不消耗积分
+- API 调用涉及费用，需在腾讯云 TokenHub 查看最新定价
+- 未成年用户需家长协助完成腾讯云实名认证
+- 调用 API 时请妥善保管 API Key，不要硬编码在前端代码或公开仓库中
+- Hy3 是纯文本模型，不具备图像、视频等多模态能力
